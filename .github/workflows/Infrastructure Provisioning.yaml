@@ -1,0 +1,47 @@
+name: "Infrastructure Provisioning"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Terraform/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy: 
+    name: "Deploy Infrastructure and Apps"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::439328746854:role/terraform-el2arb3a
+          aws-region: us-east-1 
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.2" 
+
+      - name: Terraform Init
+        working-directory: ./Terraform
+        run: terraform init
+
+      - name: Terraform Plan
+        working-directory: ./Terraform
+        run: terraform plan -parallelism=10 -no-color
+        env:
+          TF_LOG: INFO
+
+      - name: Terraform Apply
+        working-directory: ./Terraform
+        run: terraform apply -auto-approve -input=false

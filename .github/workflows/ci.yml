@@ -50,12 +50,12 @@ jobs:
         run: bun run build
 
       - name: Build Docker Image
-        run: docker build -t ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:${{ github.sha }} .
+        run: docker build -t ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:latest .
 
       - name: Trivy Image Scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:${{ github.sha }}
+          image-ref: ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:latest
           format: table
           exit-code: 0 # Don't fail the build on vulnerabilities, but log them
           severity: CRITICAL,HIGH
@@ -70,4 +70,4 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Push Image to Amazon ECR
-        run: docker push ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:${{ github.sha }}
+        run: docker push ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:latest

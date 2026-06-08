@@ -13,13 +13,13 @@ env:
   IMAGE_NAME: svelte-app
   AWS_REGION: us-east-1
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: production
+
+    permissions:
+      contents: write
 
     defaults:
       run:

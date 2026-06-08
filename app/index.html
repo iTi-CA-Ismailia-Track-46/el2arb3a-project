@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sverdle</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #ffffff;
+      }
+
+      .container {
+        text-align: center;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .emoji {
+        font-size: 4rem;
+        margin: 20px 0;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-top: 30px;
+        opacity: 0.9;
+      }
+
+      .status {
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(76, 175, 80, 0.2);
+        border-left: 4px solid #4caf50;
+        border-radius: 5px;
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #4caf50;
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .details {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sverdle</h1>
+      <div class="emoji">🎮</div>
+      <h2>Word Puzzle Game</h2>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        <span>Service Status: Operational</span>
+      </div>
+
+      <p>Wordle-Inspired Daily Word Puzzle | Deployed on AWS ECS Fargate</p>
+
+      <div class="details">
+        <p>Instance: Container-based Deployment</p>
+        <p>Status: Ready to serve requests</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.5">
+          Sverdle © 2026
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

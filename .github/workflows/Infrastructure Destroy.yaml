@@ -1,0 +1,41 @@
+name: "Terraform Infrastructure Destroy"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: "Terraform Execution"
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./Terraform 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::439328746854:role/terraform-el2arb3a
+          aws-region: us-east-1 
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.2" 
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -no-color
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -input=false

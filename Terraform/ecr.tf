@@ -1,5 +1,5 @@
-resource "aws_ecr_repository" "platform_api" {
-  name                 = "platform-api"
+resource "aws_ecr_repository" "el2arb3a_project" {
+  name                 = "el2arb3a-project"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -8,6 +8,6 @@ resource "aws_ecr_repository" "platform_api" {
 
   tags = {
     Environment = "Production"
-    Project     = "KubeVision-Serverless-Platform"
+    Project     = "el2arb3a-project"
   }
 }

@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "The AWS region to deploy infrastructure"
   type        = string
-  default     = "us-east-1" 
+  default     = "us-east-1"
 }
 
 variable "project_name" {
@@ -25,11 +25,11 @@ variable "vpc_cidr" {
 variable "public_subnets" {
   description = "Public subnets CIDRs"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+  default     = ["10.0.1.0/24"]
 }
 
 variable "private_subnets" {
   description = "Private subnets CIDRs"
   type        = list(string)
-  default     = ["10.0.11.0/24", "10.0.12.0/24"]
+  default     = ["10.0.2.0/24"]
 }

@@ -18,7 +18,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project     = "KubeVision-Serverless-Platform"
+      Project = "el2arb3a-project"
     }
   }
 }

@@ -71,3 +71,11 @@ jobs:
 
       - name: Push Image to Amazon ECR
         run: docker push ${{ vars.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:latest
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ matrix.ecs_service }} \
+            --task-definition ${{ steps.register.outputs.arn }} \
+            --force-new-deployment
